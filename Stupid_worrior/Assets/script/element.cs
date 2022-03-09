@@ -73,7 +73,7 @@ public class element : MonoBehaviour
 
     private void OnMouseDown()
     {
-        
+        sprite.color = new Color(1, 1, 1, 0.5f);
         if (!isnotelement)
         {
             var ele = Resources.Load(gameObject.name);
@@ -82,7 +82,7 @@ public class element : MonoBehaviour
             duplicate_element = (GameObject)Instantiate(ele, gameObject.transform.position, Quaternion.identity);
             duplicate_element.GetComponent<element>().isbutton = false;
             dup_sprite = duplicate_element.GetComponent<SpriteRenderer>();
-            sprite.color = new Color(1, 1, 1, 0.5f);
+            
         }
     }
     private void OnMouseDrag()
@@ -90,18 +90,32 @@ public class element : MonoBehaviour
         if (!isnotelement)
         {
            Collider2D collision1 = Physics2D.OverlapBox(duplicate_element.transform.position, new Vector2(1f, 1f), 0, gameObject.layer);
- 
 
             if (collision1 != null)
             {
-                Debug.Log(collision1.name);
+                Debug.Log("collision " + collision1.name);
+
+            }
+            if (collision1 != null)
+            {
                 if (collision1.tag != "elemental")
+                {
+                    isok = false;
                     dup_sprite.color = new Color(1, 0, 0, 0.5f);
+                }
+                else if (collision1.tag=="elemental")
+                {
+                    dup_sprite.color = new Color(0, 0, 1, 0.5f);
+                }
                 else
+                {
+                    isok = true;
                     dup_sprite.color = new Color(0, 1, 0, 0.5f);
+                }
             }
             else
             {
+                isok = true;
                 dup_sprite.color = new Color(0, 1, 0, 0.5f);
 
             }
@@ -116,13 +130,16 @@ public class element : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (!isnotelement)
+        if (!isok)
+            Destroy(duplicate_element);
+        else if (!isnotelement)
         {
+   
             Vector2 mouseposition = Input.mousePosition;
             mouseposition = Camera.main.ScreenToWorldPoint(mouseposition);
             Vector2 selectposition = new Vector2(Mathf.FloorToInt(mouseposition.x) + 0.5f, Mathf.FloorToInt(mouseposition.y) + 0.5f);
             duplicate_element.transform.position = selectposition;
-            sprite.color = new Color(1, 1, 1, 1);
+          
             cost.text = 0.ToString();
             dup_sprite.color = new Color(1, 1, 1, 1);
            
@@ -138,6 +155,8 @@ public class element : MonoBehaviour
             ele.set_target(gameObject);
             
         }
+       
+        sprite.color = new Color(1, 1, 1, 1);
     }
 
     private void OnDrawGizmos()

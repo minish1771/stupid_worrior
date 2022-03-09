@@ -37,7 +37,7 @@ public class elemental_cost_manager : MonoBehaviour
     // Update is called once per frame 
     void Update()
     {
-        text_total_cost.text += (total_cost - sum_cost).ToString();
+        text_total_cost.text = "Total cost : " + (total_cost - sum_cost).ToString();
     }
     public void costdown()
     {

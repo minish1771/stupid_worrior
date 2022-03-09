@@ -36,7 +36,7 @@ public class fire : element
 
             if (collision2 != null)
             {
-            
+                Debug.Log("fire" + collision2.name);
                 if (collision2.name == "bush")
                 {
                     Debug.Log("test");

@@ -16,11 +16,13 @@ public class bush : element
     }
     protected override void Update()
     {
+        
         base.Update();
         collision2 = Physics2D.OverlapBox(gameObject.transform.position, new Vector2(1, 1), 0, 8);
+        
         if (collision2 != null)
         {
-            Debug.Log("bush collision" + collision2.name);
+         
         
         }
     }
