@@ -90,14 +90,11 @@ public class element : MonoBehaviour
         if (!isnotelement)
         {
            Collider2D collision1 = Physics2D.OverlapBox(duplicate_element.transform.position, new Vector2(1f, 1f), 0, gameObject.layer);
-
+           
+        
             if (collision1 != null)
             {
-                Debug.Log("collision " + collision1.name);
-
-            }
-            if (collision1 != null)
-            {
+                Debug.Log(this.gameObject.name + " parent overlap : " + collision1.name);
                 if (collision1.tag != "elemental")
                 {
                     isok = false;

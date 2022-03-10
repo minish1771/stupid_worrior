@@ -20,7 +20,7 @@ public class button : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHand
         Vector2 mouseposition = Input.mousePosition;
         Debug.Log(mouseposition);
 
-
+        
         Vector2 selectposition = new Vector2(Mathf.FloorToInt(mouseposition.x) + 0.5f, Mathf.FloorToInt(mouseposition.y) + 0.5f);
         this.transform.position = selectposition;
        

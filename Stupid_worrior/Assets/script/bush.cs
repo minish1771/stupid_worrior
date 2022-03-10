@@ -18,12 +18,13 @@ public class bush : element
     {
         
         base.Update();
-        collision2 = Physics2D.OverlapBox(gameObject.transform.position, new Vector2(1, 1), 0, 8);
+        collision2 = Physics2D.OverlapBox(gameObject.transform.position, new Vector2(1f, 1f), 0, 8);
         
         if (collision2 != null)
         {
-         
-        
+            Debug.Log(this.gameObject.name + " child overlap : " + collision2.name);
+
+
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

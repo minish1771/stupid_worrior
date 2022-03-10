@@ -36,7 +36,8 @@ public class fire : element
 
             if (collision2 != null)
             {
-                Debug.Log("fire" + collision2.name);
+                Debug.Log(this.gameObject.name+" child overlap : " + collision2.name);
+
                 if (collision2.name == "bush")
                 {
                     Debug.Log("test");
